@@ -1,0 +1,30 @@
+{
+  "name": "policy-action-check",
+  "displayName": "Policy Action Check",
+  "version": "0.8.0",
+  "description": "Compile a policy’s anchored terms into two files: a generator for writing actions as short codes, and a judge that says which terms a code violates, what is required next, and the smallest fix. Runs without a model at use time. History is optional post-build evaluation.",
+  "author": { "name": "oceanszoo" },
+  "repository": "https://github.com/oceanszoo/policy-action-check-v2",
+  "keywords": ["policy", "compliance", "terms", "usage-policy", "action-code", "rules"],
+  "userConfig": {
+    "guard_mode": {
+      "type": "string",
+      "title": "Guard tool calls",
+      "description": "Check Claude's own tool calls against the bundle's tool map before they run: off, warn (ask you), or enforce (deny violations).",
+      "options": ["off", "warn", "enforce"],
+      "default": "warn"
+    },
+    "space_dir": {
+      "type": "string",
+      "title": "Bundle folder",
+      "description": "Folder in your project where the generator/judge bundle is written.",
+      "default": "policy_space"
+    },
+    "policy_date": {
+      "type": "string",
+      "title": "Judge as of date",
+      "description": "YYYY-MM-DD used to decide which rules are in effect. Empty means today.",
+      "default": ""
+    }
+  }
+}

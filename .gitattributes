@@ -1,0 +1,4 @@
+# Portable policy bundles and the reader are distributed with LF bytes (bundles carry digests).
+plugins/policy-action-check/examples/** text eol=lf
+plugins/policy-action-check/tests/fixtures/** text eol=lf
+apps/pac-reader/** text eol=lf

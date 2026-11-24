@@ -1,0 +1,38 @@
+{"code": "pur=cyber auth=own", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "pur=cyber auth=unauth", "expected": {"verdict": "violates", "violated": ["P-cyber"], "required_next": [], "open": []}}
+{"code": "pur=track cons=y", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "pur=track cons=n", "expected": {"verdict": "violates", "violated": ["P-surveillance"], "required_next": [], "open": []}}
+{"code": "pur=imp fic=lab", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "pur=imp fic=real", "expected": {"verdict": "violates", "violated": ["P-disinformation"], "required_next": [], "open": []}}
+{"code": "@claim-pay rev=n", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=std hr=ins scope=ind fav=part rev=n", "expected": {"verdict": "violates", "violated": ["O-hr-review"], "required_next": ["O-hr-disclosure"], "open": []}}
+{"code": "act=biz pur=std hr=emp scope=ind fav=part rev=y disc=y", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=std hr=med scope=nc", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "@support-bot", "expected": {"verdict": "compliant_if_requirements_met", "violated": [], "required_next": ["O-chatbot-disclosure"], "open": []}}
+{"code": "@support-bot disc=n", "expected": {"verdict": "violates", "violated": ["O-chatbot-disclosure"], "required_next": [], "open": []}}
+{"code": "@robot-shared stop=y safe=y lim=y", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "@robot-shared stop=y safe=y lim=n", "expected": {"verdict": "violates", "violated": ["O-physical-limits"], "required_next": [], "open": []}}
+{"code": "act=biz pur=std phys=nc", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "pur=abuse", "expected": {"verdict": "violates", "violated": ["P-platform-abuse"], "required_next": [], "open": []}}
+{"code": "pur=data", "expected": {"verdict": "needs_info", "violated": [], "required_next": [], "open": ["P-privacy"]}}
+{"code": "pur=std hr=ins scope=ind fav=part rev=y disc=y date=2026-11-01", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=data+cyber auth=own cons=y", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=track+fraud cons=y", "expected": {"verdict": "violates", "violated": ["P-fraud"], "required_next": [], "open": []}}
+{"code": "act=biz pur=cyber+data auth=own", "expected": {"verdict": "needs_info", "violated": [], "required_next": [], "open": ["P-privacy"]}}
+{"code": "act=biz pur=illegal", "expected": {"verdict": "violates", "violated": ["P-illegal"], "required_next": [], "open": []}}
+{"code": "act=biz pur=infra", "expected": {"verdict": "violates", "violated": ["P-critical-infra"], "required_next": [], "open": []}}
+{"code": "act=biz pur=weap", "expected": {"verdict": "violates", "violated": ["P-weapons"], "required_next": [], "open": []}}
+{"code": "act=biz pur=viol", "expected": {"verdict": "violates", "violated": ["P-violence-hate"], "required_next": [], "open": []}}
+{"code": "act=biz pur=data cons=n", "expected": {"verdict": "violates", "violated": ["P-privacy"], "required_next": [], "open": []}}
+{"code": "act=biz pur=child", "expected": {"verdict": "violates", "violated": ["P-child-safety"], "required_next": [], "open": []}}
+{"code": "act=biz pur=harm", "expected": {"verdict": "violates", "violated": ["P-harmful-conduct"], "required_next": [], "open": []}}
+{"code": "act=biz pur=fake", "expected": {"verdict": "violates", "violated": ["P-deceptive-campaigns"], "required_next": [], "open": []}}
+{"code": "act=biz pur=elect", "expected": {"verdict": "violates", "violated": ["P-elections"], "required_next": [], "open": []}}
+{"code": "act=biz pur=sex", "expected": {"verdict": "violates", "violated": ["P-sexual-content"], "required_next": [], "open": []}}
+{"code": "act=biz phys=hi", "expected": {"verdict": "compliant_if_requirements_met", "violated": [], "required_next": ["O-physical-limits", "O-physical-safe-state", "O-physical-stop"], "open": ["P-child-safety", "P-critical-infra", "P-cyber", "P-deceptive-campaigns", "P-disinformation", "P-elections", "P-fraud", "P-harmful-conduct", "P-illegal", "P-platform-abuse", "P-privacy", "P-sexual-content", "P-surveillance", "P-violence-hate", "P-weapons"]}}
+{"code": "act=biz pur=std chat=y disc=y", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=std fic=real", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=std cons=n", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=std hr=none scope=ind fav=part", "expected": {"verdict": "compliant", "violated": [], "required_next": [], "open": []}}
+{"code": "act=biz pur=false", "expected": {"verdict": "violates", "violated": ["P-disinformation"], "required_next": [], "open": []}}
+{"code": "act=biz pur=emo", "expected": {"verdict": "violates", "violated": ["P-surveillance"], "required_next": [], "open": []}}

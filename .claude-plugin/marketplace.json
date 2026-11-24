@@ -1,0 +1,11 @@
+{
+  "name": "oceanszoo-plugins",
+  "owner": { "name": "oceanszoo" },
+  "plugins": [
+    {
+      "name": "policy-action-check",
+      "source": "./plugins/policy-action-check",
+      "description": "Policy/terms -> action-code generator + judge bundle, run automatically."
+    }
+  ]
+}

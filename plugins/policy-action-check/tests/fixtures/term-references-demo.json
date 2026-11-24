@@ -1,0 +1,66 @@
+{
+  "source": "Example records handbook (fictional)",
+  "glossary": [
+    {"term": "Case Token", "defined_in": "c001", "aliases": ["case tokens"]}
+  ],
+  "clauses": [
+    {
+      "id": "c001",
+      "section": "Definitions",
+      "class": "definition",
+      "text": "A Case Token is a random identifier assigned to one support case."
+    },
+    {
+      "id": "c002",
+      "section": "Access / Shared workspace",
+      "class": "prohibition",
+      "confidence": "high",
+      "text": "Do not post a Case Token in a shared workspace.",
+      "refs": [{"to": "c001", "kind": "uses_definition", "text": "Case Token"}]
+    },
+    {
+      "id": "c003",
+      "section": "Access / Incident response",
+      "class": "permission_exception",
+      "confidence": "high",
+      "text": "The shared workspace restriction does not apply to the restricted incident channel.",
+      "refs": [{"to": "c002", "kind": "modifies", "text": "shared workspace restriction"}]
+    },
+    {
+      "id": "c004",
+      "section": "Access / Contractors",
+      "class": "condition_scope",
+      "confidence": "high",
+      "text": "Contractors must also follow the restriction above.",
+      "refs": [{"to": "c002", "kind": "incorporates", "text": "the restriction above"}]
+    },
+    {
+      "id": "c005",
+      "section": "Exports",
+      "class": "obligation",
+      "confidence": "high",
+      "text": "Exports are subject to the customer data agreement.",
+      "refs": [{"to": null, "kind": "subject_to", "text": "subject to the customer data agreement", "external": "customer data agreement"}]
+    },
+    {
+      "id": "c006",
+      "section": "Retention",
+      "class": "obligation",
+      "confidence": "high",
+      "text": "Review export approvals every quarter."
+    },
+    {
+      "id": "c007",
+      "section": "Access / Onboarding",
+      "class": "obligation",
+      "confidence": "medium",
+      "text": "Keep the reviewer roster current."
+    },
+    {
+      "id": "c008",
+      "section": "Setup",
+      "class": "procedure",
+      "text": "Reviewers can find the roster in the admin dashboard."
+    }
+  ]
+}

@@ -1,0 +1,1463 @@
+{
+  "format": "pac-generator",
+  "version": "2.0",
+  "grammar": "pac-code-1",
+  "dimensions": [
+    {
+      "key": "pur",
+      "name": "observable activities",
+      "values": {
+        "std": "None of the listed activities",
+        "illegal": "Activity recorded as violating applicable law or regulation",
+        "sabotage": "Infrastructure sabotage",
+        "infra_access": "Critical-system access without authorization",
+        "cyber": "Computer or network compromise",
+        "weapon_dev": "Weapons development",
+        "weapon_op": "Weapons operation",
+        "violence": "Violence",
+        "extremism": "Extremism",
+        "trait_disc": "Protected-trait discrimination",
+        "data": "Sharing personal information",
+        "exploitation": "Exploitation of a person",
+        "grooming": "Grooming of a person",
+        "abuse": "Abuse of a person",
+        "self_harm": "Promotion of self-harm",
+        "harassment": "Harassment",
+        "nc_intimate": "Creating or distributing intimate imagery without consent",
+        "disinfo": "Disinformation",
+        "imp": "Deceptive impersonation",
+        "fake_support": "Fake grassroots support",
+        "conceal_coord": "Concealed coordination",
+        "voter_deception": "Voter deception",
+        "suppression": "Voter suppression",
+        "disruption": "Election disruption",
+        "track": "Tracking a person",
+        "criminal": "Criminal-justice decision",
+        "anon": "Anonymized analysis",
+        "fraud": "Fraud",
+        "scam": "Scam",
+        "spam": "Spam",
+        "false_record": "Falsified record",
+        "guardrail": "Guardrail evasion",
+        "unauth_platform": "Platform access without authorization",
+        "explicit": "Sexually explicit output"
+      },
+      "question": "Which listed activities are present?",
+      "evidence": "Action, output, approvals, or applicable legal determination; mark an unverified classification unknown.",
+      "multi": true
+    },
+    {
+      "key": "auth",
+      "name": "computer-system authorization",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Has the responsible system owner authorized the computer or network activity?",
+      "evidence": "Owner authorization and its documented scope"
+    },
+    {
+      "key": "cyber_use",
+      "name": "security testing purpose",
+      "values": {
+        "research": "Security research",
+        "bounty": "Bug bounty work",
+        "other": "Other"
+      },
+      "question": "Is this authorized activity security research or bug bounty work?",
+      "evidence": "Research plan or bounty program scope"
+    },
+    {
+      "key": "cons",
+      "name": "consent to the activity",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Have all relevant people consented to the specified sharing or tracking?",
+      "evidence": "Consent records tied to that activity"
+    },
+    {
+      "key": "age",
+      "type": "number",
+      "name": "subject age",
+      "unit": "years",
+      "integer": true,
+      "min": 0,
+      "max": 150,
+      "question": "How old is the person subject to the action?",
+      "evidence": "Recorded age or date of birth"
+    },
+    {
+      "key": "fic",
+      "name": "disclosed fiction, satire or parody",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Are the relevant outputs disclosed as fiction, satire, or parody?",
+      "evidence": "The disclosure shown with each relevant output"
+    },
+    {
+      "key": "anon_qual",
+      "name": "anonymized analysis qualification recorded",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Is this anonymized analysis covered by a documented policy exception?",
+      "evidence": "Applicable exception criteria and evidence of their satisfaction"
+    },
+    {
+      "key": "area",
+      "name": "recommendation field",
+      "values": {
+        "credit": "Credit",
+        "housing": "Housing",
+        "listed_field": "Another field named explicitly in the policy",
+        "other": "Not a field named in the policy"
+      },
+      "question": "What field does the recommendation concern?",
+      "evidence": "Recommendation or an explicit scope list in the policy"
+    },
+    {
+      "key": "reviewed",
+      "name": "prior qualified review",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Did a qualified person review the recommendation before it was used or communicated?",
+      "evidence": "Timestamped review and reviewer qualification"
+    },
+    {
+      "key": "changeable",
+      "name": "reviewer can change recommendation",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Could the reviewing person change the recommendation?",
+      "evidence": "Review tool and reviewer permissions"
+    },
+    {
+      "key": "disc_person",
+      "name": "disclosure to affected person",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Was the affected person told that AI was involved?",
+      "evidence": "Notice issued to the affected person"
+    },
+    {
+      "key": "hardware",
+      "name": "hardware control without prior review",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Does the action control hardware without prior review?",
+      "evidence": "Control command and review record"
+    },
+    {
+      "key": "hazard_list",
+      "name": "hazard explicitly listed in scope",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Does the action present a hazard explicitly named in the relevant policy section?",
+      "evidence": "Applicable policy hazard list and documented physical conditions"
+    },
+    {
+      "key": "observer",
+      "name": "qualified observer",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Is a qualified observer in place?",
+      "evidence": "Designated observer and qualification record"
+    },
+    {
+      "key": "stop",
+      "name": "observer can stop equipment",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Can the designated observer stop the equipment?",
+      "evidence": "Access to a usable stop control"
+    },
+    {
+      "key": "safe_i",
+      "name": "intervention response",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Does the system stop or hold the specified safe state when the observer intervenes?",
+      "evidence": "Test result for operator intervention"
+    },
+    {
+      "key": "safe_d",
+      "name": "disconnection response",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Does the system stop or hold the specified safe state when disconnected?",
+      "evidence": "Test result after connection loss"
+    },
+    {
+      "key": "limits",
+      "name": "limits independent of model",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Are the specified safety limits enforced independently of the model?",
+      "evidence": "Controller and system architecture"
+    },
+    {
+      "key": "favorable",
+      "name": "wholly favorable decision",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Is the decision wholly favorable to the affected person?",
+      "evidence": "Outcome of the proposed decision"
+    },
+    {
+      "key": "fav_list",
+      "name": "decision explicitly listed in the exception",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Is the decision type explicitly listed as eligible for the review exception?",
+      "evidence": "Applicable source list and decision type"
+    },
+    {
+      "key": "law_record",
+      "name": "legal permission verified",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Does an applicable legal determination explicitly confirm this bypass is permitted?",
+      "evidence": "Applicable legal determination for the decision"
+    },
+    {
+      "key": "surface",
+      "name": "AI delivery surface",
+      "values": {
+        "session": "Session or interface",
+        "other": "Neither"
+      },
+      "question": "Does the AI interaction take place in a session or an interface?",
+      "evidence": "Delivery surface"
+    },
+    {
+      "key": "disc_start",
+      "name": "disclosure at session start",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Is AI disclosed at the start of the session?",
+      "evidence": "Session-opening transcript or screenshots"
+    },
+    {
+      "key": "disc_ui",
+      "name": "disclosure in the interface",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "question": "Is AI disclosed in the interface?",
+      "evidence": "User-visible interface text"
+    }
+  ],
+  "duty": {
+    "parties": [
+      "user"
+    ]
+  },
+  "scope": {
+    "areas": [
+      {
+        "name": "General rules › Illegal activity",
+        "decision": "in_scope",
+        "source_terms": [
+          "c001"
+        ]
+      },
+      {
+        "name": "General rules › Critical infrastructure",
+        "decision": "in_scope",
+        "source_terms": [
+          "c002"
+        ]
+      },
+      {
+        "name": "General rules › Computer and network systems",
+        "decision": "in_scope",
+        "source_terms": [
+          "c003",
+          "c004"
+        ]
+      },
+      {
+        "name": "General rules › Weapons",
+        "decision": "in_scope",
+        "source_terms": [
+          "c005"
+        ]
+      },
+      {
+        "name": "General rules › Violence and hate",
+        "decision": "in_scope",
+        "source_terms": [
+          "c006"
+        ]
+      },
+      {
+        "name": "General rules › Privacy",
+        "decision": "in_scope",
+        "source_terms": [
+          "c007"
+        ]
+      },
+      {
+        "name": "General rules › Minors",
+        "decision": "in_scope",
+        "source_terms": [
+          "c008",
+          "c009"
+        ]
+      },
+      {
+        "name": "General rules › Harmful conduct",
+        "decision": "in_scope",
+        "source_terms": [
+          "c010"
+        ]
+      },
+      {
+        "name": "General rules › False information",
+        "decision": "in_scope",
+        "source_terms": [
+          "c011",
+          "c012"
+        ]
+      },
+      {
+        "name": "General rules › Deceptive campaigns",
+        "decision": "in_scope",
+        "source_terms": [
+          "c013"
+        ]
+      },
+      {
+        "name": "General rules › Elections",
+        "decision": "in_scope",
+        "source_terms": [
+          "c014"
+        ]
+      },
+      {
+        "name": "General rules › Tracking and enforcement",
+        "decision": "in_scope",
+        "source_terms": [
+          "c015",
+          "c016"
+        ]
+      },
+      {
+        "name": "General rules › Fraud",
+        "decision": "in_scope",
+        "source_terms": [
+          "c017"
+        ]
+      },
+      {
+        "name": "General rules › Service abuse",
+        "decision": "in_scope",
+        "source_terms": [
+          "c018"
+        ]
+      },
+      {
+        "name": "General rules › Explicit content",
+        "decision": "in_scope",
+        "source_terms": [
+          "c019"
+        ]
+      },
+      {
+        "name": "Sensitive uses › Requirements",
+        "decision": "in_scope",
+        "source_terms": [
+          "c020",
+          "c021",
+          "c022",
+          "c023",
+          "c024"
+        ]
+      },
+      {
+        "name": "Sensitive uses › Sensitive recommendations",
+        "decision": "in_scope",
+        "source_terms": [
+          "c025"
+        ]
+      },
+      {
+        "name": "Sensitive uses › Physical actions",
+        "decision": "in_scope",
+        "source_terms": [
+          "c026"
+        ]
+      },
+      {
+        "name": "Sensitive uses › Favourable decisions",
+        "decision": "in_scope",
+        "source_terms": [
+          "c027"
+        ]
+      },
+      {
+        "name": "Other uses",
+        "decision": "in_scope",
+        "source_terms": [
+          "c028"
+        ]
+      }
+    ],
+    "duty": {
+      "parties": [
+        "user"
+      ]
+    }
+  },
+  "constants": {},
+  "order": "map",
+  "term_map": {
+    "sections": [
+      {
+        "name": "General rules › Illegal activity",
+        "terms": [
+          "c001"
+        ]
+      },
+      {
+        "name": "General rules › Critical infrastructure",
+        "terms": [
+          "c002"
+        ]
+      },
+      {
+        "name": "General rules › Computer and network systems",
+        "terms": [
+          "c003"
+        ]
+      },
+      {
+        "name": "General rules › Weapons",
+        "terms": [
+          "c005"
+        ]
+      },
+      {
+        "name": "General rules › Violence and hate",
+        "terms": [
+          "c006"
+        ]
+      },
+      {
+        "name": "General rules › Privacy",
+        "terms": [
+          "c007"
+        ]
+      },
+      {
+        "name": "General rules › Minors",
+        "terms": [
+          "c008"
+        ]
+      },
+      {
+        "name": "General rules › Harmful conduct",
+        "terms": [
+          "c010"
+        ]
+      },
+      {
+        "name": "General rules › False information",
+        "terms": [
+          "c011"
+        ]
+      },
+      {
+        "name": "General rules › Deceptive campaigns",
+        "terms": [
+          "c013"
+        ]
+      },
+      {
+        "name": "General rules › Elections",
+        "terms": [
+          "c014"
+        ]
+      },
+      {
+        "name": "General rules › Tracking and enforcement",
+        "terms": [
+          "c015"
+        ]
+      },
+      {
+        "name": "General rules › Fraud",
+        "terms": [
+          "c017"
+        ]
+      },
+      {
+        "name": "General rules › Service abuse",
+        "terms": [
+          "c018"
+        ]
+      },
+      {
+        "name": "General rules › Explicit content",
+        "terms": [
+          "c019"
+        ]
+      },
+      {
+        "name": "Sensitive uses › Requirements",
+        "terms": [
+          "c020",
+          "c021",
+          "c022",
+          "c023",
+          "c024"
+        ]
+      },
+      {
+        "name": "Other uses",
+        "terms": [
+          "c028"
+        ]
+      }
+    ],
+    "nodes": {
+      "c001": {
+        "title": "Applicable law and regulations",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "pur",
+            "in": [
+              "illegal"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c002": {
+        "title": "Critical infrastructure",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "sabotage"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "infra_access"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c003": {
+        "title": "Unauthorized computer or network compromise",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "pur",
+            "in": [
+              "cyber"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "auth",
+            "in": [
+              "n"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c005": {
+        "title": "Weapons development or operation",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "weapon_dev"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "weapon_op"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c006": {
+        "title": "Violence, extremism or protected-trait discrimination",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "violence"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "extremism"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "trait_disc"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c007": {
+        "title": "Sharing personal information without consent",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "pur",
+            "in": [
+              "data"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "cons",
+            "in": [
+              "n"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c008": {
+        "title": "Exploitation, grooming or abuse of a child",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "exploitation"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "grooming"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "abuse"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "age",
+            "lt": 18
+          }
+        ],
+        "binds": "user"
+      },
+      "c010": {
+        "title": "Self-harm promotion, harassment or nonconsensual intimate imagery",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "self_harm"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "harassment"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "nc_intimate"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c011": {
+        "title": "Disinformation or deceptive impersonation",
+        "parents": [],
+        "children": [
+          "c012"
+        ],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "disinfo"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "imp"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c012": {
+        "title": "Disclosed fiction, satire or parody",
+        "parents": [
+          "c011"
+        ],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "fic",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user",
+        "next_step": "Keep the disclosure visible."
+      },
+      "c013": {
+        "title": "Deceptive campaigns",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "fake_support"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "conceal_coord"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c014": {
+        "title": "Election interference",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "voter_deception"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "suppression"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "disruption"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c015": {
+        "title": "Nonconsensual tracking or criminal-justice decisions",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "track"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "criminal"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "cons",
+                "in": [
+                  "n"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "criminal"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c017": {
+        "title": "Fraud, scams, spam or falsified records",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "fraud"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "scam"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "spam"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "false_record"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c018": {
+        "title": "Platform abuse",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "any": [
+              {
+                "dim": "pur",
+                "in": [
+                  "guardrail"
+                ]
+              },
+              {
+                "dim": "pur",
+                "in": [
+                  "unauth_platform"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c019": {
+        "title": "Sexually explicit output",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "pur",
+            "in": [
+              "explicit"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c020": {
+        "title": "Qualified prior review",
+        "parents": [],
+        "children": [
+          "c027"
+        ],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "area",
+            "in": [
+              "credit",
+              "housing",
+              "listed_field"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "require",
+            "dim": "reviewed",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k3",
+            "role": "require",
+            "dim": "changeable",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c021": {
+        "title": "Disclosure to an affected person",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "area",
+            "in": [
+              "credit",
+              "housing",
+              "listed_field"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "require",
+            "dim": "disc_person",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c022": {
+        "title": "Qualified observer and stop control",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "hardware",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "hazard_list",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k3",
+            "role": "require",
+            "dim": "observer",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k4",
+            "role": "require",
+            "dim": "stop",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c023": {
+        "title": "Safe state on intervention or disconnection",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "hardware",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "hazard_list",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k3",
+            "role": "require",
+            "dim": "safe_i",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k4",
+            "role": "require",
+            "dim": "safe_d",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c024": {
+        "title": "Independent safety limits",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "hardware",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "hazard_list",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k3",
+            "role": "require",
+            "dim": "limits",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user"
+      },
+      "c027": {
+        "title": "Listed wholly favourable decisions",
+        "parents": [
+          "c020"
+        ],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "favorable",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "gate",
+            "dim": "fav_list",
+            "in": [
+              "y"
+            ]
+          },
+          {
+            "id": "k3",
+            "role": "gate",
+            "dim": "law_record",
+            "in": [
+              "y"
+            ]
+          }
+        ],
+        "binds": "user",
+        "next_step": "Confirm that the legal permission and listed outcome apply before using the prior-review exception."
+      },
+      "c028": {
+        "title": "Disclosure at session start or in interface",
+        "parents": [],
+        "children": [],
+        "keys": [
+          {
+            "id": "k1",
+            "role": "gate",
+            "dim": "surface",
+            "in": [
+              "session"
+            ]
+          },
+          {
+            "id": "k2",
+            "role": "require",
+            "any": [
+              {
+                "dim": "disc_start",
+                "in": [
+                  "y"
+                ]
+              },
+              {
+                "dim": "disc_ui",
+                "in": [
+                  "y"
+                ]
+              }
+            ]
+          }
+        ],
+        "binds": "user"
+      }
+    }
+  },
+  "lexicon": [
+    {
+      "phrase": "break a law or regulation",
+      "token": "pur=illegal"
+    },
+    {
+      "phrase": "sabotage of infrastructure",
+      "token": "pur=sabotage"
+    },
+    {
+      "phrase": "unapproved access to critical systems",
+      "token": "pur=infra_access"
+    },
+    {
+      "phrase": "breaking into computers or networks",
+      "token": "pur=cyber"
+    },
+    {
+      "phrase": "without permission",
+      "token": "auth=n"
+    },
+    {
+      "phrase": "building, testing",
+      "token": "pur=weapon_dev"
+    },
+    {
+      "phrase": "operating weapons",
+      "token": "pur=weapon_op"
+    },
+    {
+      "phrase": "violent",
+      "token": "pur=violence"
+    },
+    {
+      "phrase": "extremist",
+      "token": "pur=extremism"
+    },
+    {
+      "phrase": "discriminatory",
+      "token": "pur=trait_disc"
+    },
+    {
+      "phrase": "disclose another person's personal data",
+      "token": "pur=data"
+    },
+    {
+      "phrase": "unless that person has agreed",
+      "token": "cons=n"
+    },
+    {
+      "phrase": "exploits",
+      "token": "pur=exploitation"
+    },
+    {
+      "phrase": "grooms",
+      "token": "pur=grooming"
+    },
+    {
+      "phrase": "harms a child",
+      "token": "pur=abuse"
+    },
+    {
+      "phrase": "encouraging self-harm",
+      "token": "pur=self_harm"
+    },
+    {
+      "phrase": "harassment",
+      "token": "pur=harassment"
+    },
+    {
+      "phrase": "intimate images shared without consent",
+      "token": "pur=nc_intimate"
+    },
+    {
+      "phrase": "false information",
+      "token": "pur=disinfo"
+    },
+    {
+      "phrase": "impersonation meant to deceive",
+      "token": "pur=imp"
+    },
+    {
+      "phrase": "Clearly labelled fiction, satire, and parody",
+      "token": "fic=y"
+    },
+    {
+      "phrase": "fake grassroots campaigns",
+      "token": "pur=fake_support"
+    },
+    {
+      "phrase": "hidden coordination",
+      "token": "pur=conceal_coord"
+    },
+    {
+      "phrase": "misleading voters",
+      "token": "pur=voter_deception"
+    },
+    {
+      "phrase": "keeping people from voting",
+      "token": "pur=suppression"
+    },
+    {
+      "phrase": "disrupting elections",
+      "token": "pur=disruption"
+    },
+    {
+      "phrase": "tracking people",
+      "token": "pur=track"
+    },
+    {
+      "phrase": "criminal-justice decisions",
+      "token": "pur=criminal"
+    },
+    {
+      "phrase": "tracking people without consent",
+      "token": "cons=n"
+    },
+    {
+      "phrase": "fraud",
+      "token": "pur=fraud"
+    },
+    {
+      "phrase": "scams",
+      "token": "pur=scam"
+    },
+    {
+      "phrase": "spam",
+      "token": "pur=spam"
+    },
+    {
+      "phrase": "forged records",
+      "token": "pur=false_record"
+    },
+    {
+      "phrase": "getting around safeguards",
+      "token": "pur=guardrail"
+    },
+    {
+      "phrase": "unapproved access to the service",
+      "token": "pur=unauth_platform"
+    },
+    {
+      "phrase": "sexually explicit output",
+      "token": "pur=explicit"
+    },
+    {
+      "phrase": "a qualified person reviews the recommendations",
+      "token": "reviewed=y"
+    },
+    {
+      "phrase": "can change them",
+      "token": "changeable=y"
+    },
+    {
+      "phrase": "Tell the affected person that AI was involved",
+      "token": "disc_person=y"
+    },
+    {
+      "phrase": "hardware control without review",
+      "token": "hardware=y"
+    },
+    {
+      "phrase": "listed hazards",
+      "token": "hazard_list=y"
+    },
+    {
+      "phrase": "A qualified person can watch the equipment",
+      "token": "observer=y"
+    },
+    {
+      "phrase": "stop it",
+      "token": "stop=y"
+    },
+    {
+      "phrase": "Stop or stay safe when someone intervenes",
+      "token": "safe_i=y"
+    },
+    {
+      "phrase": "the link drops",
+      "token": "safe_d=y"
+    },
+    {
+      "phrase": "Keep safety limits enforced outside the model",
+      "token": "limits=y"
+    },
+    {
+      "phrase": "wholly favourable",
+      "token": "favorable=y"
+    },
+    {
+      "phrase": "favourable listed decisions",
+      "token": "fav_list=y"
+    },
+    {
+      "phrase": "Where the law allows",
+      "token": "law_record=y"
+    },
+    {
+      "phrase": "at the start of a session or in the interface",
+      "token": "surface=session"
+    },
+    {
+      "phrase": "Disclose AI at the start of a session",
+      "token": "disc_start=y"
+    },
+    {
+      "phrase": "in the interface",
+      "token": "disc_ui=y"
+    }
+  ],
+  "policy": {
+    "source": "https://example.com/sample-service-terms"
+  }
+}

@@ -1,0 +1,783 @@
+{
+  "format": "pac-judge",
+  "version": "1.6",
+  "semantics": "kleene-3v-1",
+  "policy": {
+    "name": "Sample Service Terms (synthetic test fixture)",
+    "source": "https://example.com/sample-service-terms",
+    "effective": "2026-11-12"
+  },
+  "verdicts": [
+    "compliant",
+    "violates",
+    "compliant_if_requirements_met",
+    "needs_info"
+  ],
+  "fix": {
+    "fill_cost": 0.5,
+    "change_cost": 1.0,
+    "max_changes": 3
+  },
+  "notes": [
+    "For act=agt the user is responsible for the agent's tool, browser and system actions (not scored)."
+  ],
+  "rules": [
+    {
+      "id": "P-illegal",
+      "kind": "prohibition",
+      "source": "General rules: illegal activity",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "illegal"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Illegal activity",
+      "source_terms": [
+        "c001"
+      ]
+    },
+    {
+      "id": "P-critical-infra",
+      "kind": "prohibition",
+      "source": "General rules: critical infrastructure",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "infra"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Critical infrastructure",
+      "source_terms": [
+        "c002"
+      ]
+    },
+    {
+      "id": "P-cyber",
+      "kind": "prohibition",
+      "source": "General rules: computer and network systems",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "cyber"
+        ]
+      },
+      "exceptions": [
+        {
+          "dim": "auth",
+          "in": [
+            "own"
+          ],
+          "source_terms": [
+            "c004"
+          ]
+        }
+      ],
+      "next_step": "Work only on systems you own or have written authorization to test; otherwise do not proceed.",
+      "title": "Computer and network systems",
+      "source_terms": [
+        "c003",
+        "c004"
+      ]
+    },
+    {
+      "id": "P-weapons",
+      "kind": "prohibition",
+      "source": "General rules: weapons",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "weap"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Weapons",
+      "source_terms": [
+        "c005"
+      ]
+    },
+    {
+      "id": "P-violence-hate",
+      "kind": "prohibition",
+      "source": "General rules: violence and hate",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "viol"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Violence and hate",
+      "source_terms": [
+        "c006"
+      ]
+    },
+    {
+      "id": "P-privacy",
+      "kind": "prohibition",
+      "source": "General rules: privacy and identity",
+      "effective_from": "2026-11-12",
+      "when": {
+        "all": [
+          {
+            "dim": "pur",
+            "in": [
+              "data"
+            ]
+          },
+          {
+            "dim": "cons",
+            "in": [
+              "n"
+            ]
+          }
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Privacy and identity",
+      "source_terms": [
+        "c007"
+      ]
+    },
+    {
+      "id": "P-child-safety",
+      "kind": "prohibition",
+      "source": "General rules: children's safety",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "child"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Children's safety",
+      "source_terms": [
+        "c008"
+      ]
+    },
+    {
+      "id": "P-harmful-conduct",
+      "kind": "prohibition",
+      "source": "General rules: cruel or harmful conduct",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "harm"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Cruel or harmful conduct",
+      "source_terms": [
+        "c010"
+      ]
+    },
+    {
+      "id": "P-disinformation",
+      "kind": "prohibition",
+      "source": "General rules: disinformation",
+      "effective_from": "2026-11-12",
+      "when": {
+        "any": [
+          {
+            "dim": "pur",
+            "in": [
+              "false"
+            ]
+          },
+          {
+            "all": [
+              {
+                "dim": "pur",
+                "in": [
+                  "imp"
+                ]
+              },
+              {
+                "dim": "fic",
+                "not_in": [
+                  "lab"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Disinformation",
+      "source_terms": [
+        "c011",
+        "c012"
+      ]
+    },
+    {
+      "id": "P-deceptive-campaigns",
+      "kind": "prohibition",
+      "source": "General rules: deceptive campaigns",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "fake"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Deceptive campaigns",
+      "source_terms": [
+        "c013"
+      ]
+    },
+    {
+      "id": "P-elections",
+      "kind": "prohibition",
+      "source": "General rules: democratic processes",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "elect"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Democratic processes",
+      "source_terms": [
+        "c014"
+      ]
+    },
+    {
+      "id": "P-surveillance",
+      "kind": "prohibition",
+      "source": "General rules: surveillance, censorship and law enforcement",
+      "effective_from": "2026-11-12",
+      "when": {
+        "any": [
+          {
+            "dim": "pur",
+            "in": [
+              "lawenf",
+              "emo"
+            ]
+          },
+          {
+            "all": [
+              {
+                "dim": "pur",
+                "in": [
+                  "track"
+                ]
+              },
+              {
+                "dim": "cons",
+                "in": [
+                  "n"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Surveillance, censorship and law enforcement",
+      "source_terms": [
+        "c015",
+        "c016"
+      ]
+    },
+    {
+      "id": "P-fraud",
+      "kind": "prohibition",
+      "source": "General rules: fraud and predatory practices",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "fraud"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Fraud and predatory practices",
+      "source_terms": [
+        "c017"
+      ]
+    },
+    {
+      "id": "P-platform-abuse",
+      "kind": "prohibition",
+      "source": "General rules: platform abuse",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "abuse"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Platform abuse",
+      "source_terms": [
+        "c018"
+      ]
+    },
+    {
+      "id": "P-sexual-content",
+      "kind": "prohibition",
+      "source": "General rules: sexually explicit content",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "pur",
+        "in": [
+          "sex"
+        ]
+      },
+      "exceptions": [],
+      "next_step": "Do not proceed with this action: it is prohibited regardless of safeguards.",
+      "title": "Sexually explicit content",
+      "source_terms": [
+        "c019"
+      ]
+    },
+    {
+      "id": "O-hr-review",
+      "kind": "obligation",
+      "source": "Sensitive uses: qualified human-in-the-loop",
+      "effective_from": "2026-11-12",
+      "when": {
+        "all": [
+          {
+            "dim": "hr",
+            "not_in": [
+              "none"
+            ]
+          },
+          {
+            "dim": "scope",
+            "in": [
+              "ind"
+            ]
+          },
+          {
+            "dim": "fav",
+            "not_in": [
+              "full"
+            ]
+          }
+        ]
+      },
+      "require": {
+        "dim": "rev",
+        "in": [
+          "y"
+        ]
+      },
+      "next_step": "Have a qualified person (licensed where required) review the recommendation, with power to change it, before it is delivered or used.",
+      "title": "Qualified human-in-the-loop",
+      "source_terms": [
+        "c020",
+        "c027"
+      ]
+    },
+    {
+      "id": "O-hr-disclosure",
+      "kind": "obligation",
+      "source": "Sensitive uses: disclosure",
+      "effective_from": "2026-11-12",
+      "when": {
+        "all": [
+          {
+            "dim": "hr",
+            "not_in": [
+              "none"
+            ]
+          },
+          {
+            "dim": "scope",
+            "in": [
+              "ind"
+            ]
+          }
+        ]
+      },
+      "require": {
+        "dim": "disc",
+        "in": [
+          "y"
+        ]
+      },
+      "next_step": "Tell the person receiving the advice or decision, clearly, that AI was used.",
+      "title": "Disclosure",
+      "source_terms": [
+        "c021"
+      ]
+    },
+    {
+      "id": "O-physical-stop",
+      "kind": "obligation",
+      "source": "Physical equipment: observe and stop",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "phys",
+        "in": [
+          "hi"
+        ]
+      },
+      "require": {
+        "dim": "stop",
+        "in": [
+          "y"
+        ]
+      },
+      "next_step": "Give a qualified operator a way to observe the equipment and stop it at any time.",
+      "title": "Observe and stop",
+      "source_terms": [
+        "c022"
+      ]
+    },
+    {
+      "id": "O-physical-safe-state",
+      "kind": "obligation",
+      "source": "Physical equipment: safe state",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "phys",
+        "in": [
+          "hi"
+        ]
+      },
+      "require": {
+        "dim": "safe",
+        "in": [
+          "y"
+        ]
+      },
+      "next_step": "Make the equipment stop or hold a safe state when the operator intervenes or the connection drops.",
+      "title": "Safe state",
+      "source_terms": [
+        "c023"
+      ]
+    },
+    {
+      "id": "O-physical-limits",
+      "kind": "obligation",
+      "source": "Physical equipment: independent limits",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "phys",
+        "in": [
+          "hi"
+        ]
+      },
+      "require": {
+        "dim": "lim",
+        "in": [
+          "y"
+        ]
+      },
+      "next_step": "Enforce operating limits (speed, force, dose, temperature) in a controller independent of the model.",
+      "title": "Independent limits",
+      "source_terms": [
+        "c024"
+      ]
+    },
+    {
+      "id": "O-chatbot-disclosure",
+      "kind": "obligation",
+      "source": "Other uses: consumer chatbots disclose AI",
+      "effective_from": "2026-11-12",
+      "when": {
+        "dim": "chat",
+        "in": [
+          "y"
+        ]
+      },
+      "require": {
+        "dim": "disc",
+        "in": [
+          "y"
+        ]
+      },
+      "next_step": "Show users that they are talking to an AI, at least at the start of each session or in the interface.",
+      "title": "Consumer chatbots disclose AI",
+      "source_terms": [
+        "c028"
+      ]
+    }
+  ],
+  "terms": {
+    "c001": {
+      "section": "General rules › Illegal activity",
+      "text": "Do not use the service to break a law or regulation that applies to you.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c002": {
+      "section": "General rules › Critical infrastructure",
+      "summary": "No sabotage of infrastructure and no unapproved access to critical systems.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c003": {
+      "section": "General rules › Computer and network systems",
+      "summary": "No breaking into computers or networks without permission.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c004": {
+      "section": "General rules › Computer and network systems",
+      "summary": "Authorized security research, including bug bounties, is permitted.",
+      "class": "permission_exception",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c003",
+          "kind": "modifies",
+          "text": "Authorized security research"
+        }
+      ]
+    },
+    "c005": {
+      "section": "General rules › Weapons",
+      "summary": "No building, testing or operating weapons.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c006": {
+      "section": "General rules › Violence and hate",
+      "summary": "No violent, extremist or discriminatory content.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c007": {
+      "section": "General rules › Privacy",
+      "text": "Do not disclose another person's personal data unless that person has agreed.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c008": {
+      "section": "General rules › Minors",
+      "summary": "No content that exploits, grooms or harms a child.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c009",
+          "kind": "uses_definition",
+          "text": "child"
+        }
+      ]
+    },
+    "c009": {
+      "section": "General rules › Minors",
+      "text": "A child is any person younger than 18.",
+      "class": "definition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c010": {
+      "section": "General rules › Harmful conduct",
+      "summary": "No encouraging self-harm, no harassment and no intimate images shared without consent.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c011": {
+      "section": "General rules › False information",
+      "summary": "No false information and no impersonation meant to deceive.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c012": {
+      "section": "General rules › False information",
+      "summary": "Clearly labelled fiction, satire, and parody are allowed.",
+      "class": "permission_exception",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c011",
+          "kind": "modifies",
+          "text": "fiction, satire, and parody"
+        }
+      ]
+    },
+    "c013": {
+      "section": "General rules › Deceptive campaigns",
+      "summary": "No fake grassroots campaigns or hidden coordination.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c014": {
+      "section": "General rules › Elections",
+      "summary": "No misleading voters, keeping people from voting or disrupting elections.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c015": {
+      "section": "General rules › Tracking and enforcement",
+      "summary": "No tracking people without consent and no criminal-justice decisions.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c016": {
+      "section": "General rules › Tracking and enforcement",
+      "summary": "Consented tracking and anonymised analysis may be allowed.",
+      "class": "permission_exception",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c015",
+          "kind": "modifies",
+          "text": "Consented tracking"
+        }
+      ]
+    },
+    "c017": {
+      "section": "General rules › Fraud",
+      "summary": "No fraud, scams, spam or forged records.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c018": {
+      "section": "General rules › Service abuse",
+      "summary": "No getting around safeguards and no unapproved access to the service.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c019": {
+      "section": "General rules › Explicit content",
+      "summary": "No sexually explicit output.",
+      "class": "prohibition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c020": {
+      "section": "Sensitive uses › Requirements",
+      "summary": "Before delivery, a qualified person reviews the recommendations and can change them.",
+      "class": "obligation",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c025",
+          "kind": "uses_definition",
+          "text": "recommendations"
+        }
+      ]
+    },
+    "c021": {
+      "section": "Sensitive uses › Requirements",
+      "summary": "Tell the affected person that AI was involved.",
+      "class": "obligation",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c025",
+          "kind": "uses_definition",
+          "text": "AI was involved"
+        }
+      ]
+    },
+    "c022": {
+      "section": "Sensitive uses › Requirements",
+      "summary": "A qualified person can watch the equipment and stop it.",
+      "class": "obligation",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c026",
+          "kind": "uses_definition",
+          "text": "equipment"
+        }
+      ]
+    },
+    "c023": {
+      "section": "Sensitive uses › Requirements",
+      "summary": "Stop or stay safe when someone intervenes or the link drops.",
+      "class": "obligation",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c026",
+          "kind": "uses_definition",
+          "text": "Stop or stay safe"
+        }
+      ]
+    },
+    "c024": {
+      "section": "Sensitive uses › Requirements",
+      "summary": "Keep safety limits enforced outside the model.",
+      "class": "obligation",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c026",
+          "kind": "uses_definition",
+          "text": "safety limits"
+        }
+      ]
+    },
+    "c025": {
+      "section": "Sensitive uses › Sensitive recommendations",
+      "summary": "Covered recommendations are listed fields such as credit and housing.",
+      "class": "definition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c026": {
+      "section": "Sensitive uses › Physical actions",
+      "summary": "Covered actions are hardware control without review where listed hazards exist.",
+      "class": "definition",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    },
+    "c027": {
+      "section": "Sensitive uses › Favourable decisions",
+      "summary": "Where the law allows, wholly favourable listed decisions may bypass prior review.",
+      "class": "permission_exception",
+      "source": "https://example.com/sample-service-terms",
+      "refs": [
+        {
+          "to": "c020",
+          "kind": "modifies",
+          "text": "bypass prior review"
+        }
+      ]
+    },
+    "c028": {
+      "section": "Other uses",
+      "summary": "Disclose AI at the start of a session or in the interface.",
+      "class": "obligation",
+      "source": "https://example.com/sample-service-terms",
+      "refs": []
+    }
+  }
+}

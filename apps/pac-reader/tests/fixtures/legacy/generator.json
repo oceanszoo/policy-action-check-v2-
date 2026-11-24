@@ -1,0 +1,1139 @@
+{
+  "format": "pac-generator",
+  "version": "1.6",
+  "policy": {
+    "name": "Sample Service Terms (synthetic test fixture)",
+    "source": "https://example.com/sample-service-terms",
+    "effective": "2026-11-12"
+  },
+  "grammar": "pac-code-1",
+  "dimensions": [
+    {
+      "key": "act",
+      "name": "actor",
+      "values": {
+        "con": "consumer user",
+        "biz": "business or API developer",
+        "agt": "deployed agent"
+      },
+      "fixable": false,
+      "frequency": {},
+      "evidence": "account type / contract (consumer terms vs commercial API agreement); agent deployment config",
+      "question": "Who performs the action: a consumer, a business or API developer, or a deployed agent?"
+    },
+    {
+      "key": "pur",
+      "name": "what the action does (observable functions; one or more, written a+b)",
+      "values": {
+        "std": "ordinary function, none of the listed ones (incl. emotion detection for medical or safety use)",
+        "data": "collect, aggregate or process private data",
+        "track": "track or profile people",
+        "imp": "impersonate a real person or organization",
+        "false": "spread false information",
+        "fake": "fake personas, accounts, outlets or inauthentic campaign",
+        "elect": "interfere with elections or voting",
+        "cyber": "intrusion, exploitation or malware",
+        "infra": "disrupt critical infrastructure",
+        "weap": "weapons, including CBRN",
+        "viol": "violence, extremism or hate",
+        "child": "harm to minors",
+        "harm": "self-harm promotion, harassment, non-consensual intimate imagery",
+        "lawenf": "make law-enforcement or criminal-justice decisions",
+        "emo": "emotion recognition (not medical or safety)",
+        "fraud": "scams, phishing, extortion, spam, fake documents, plagiarism",
+        "abuse": "platform abuse: reselling, multi-account, distillation, ban evasion, jailbreak",
+        "sex": "sexually explicit content",
+        "illegal": "other illegal activity"
+      },
+      "fixable": false,
+      "frequency": {},
+      "evidence": "what the action does or produces, judged from the request, output or tool call, not from stated intentions",
+      "multi": true,
+      "question": "What does the action do? Pick every function that applies."
+    },
+    {
+      "key": "auth",
+      "name": "authorization of the target",
+      "values": {
+        "na": "no target system",
+        "own": "own or authorized target",
+        "unauth": "unauthorized target"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "written authorization or ownership record for the target system (scope letter, bug bounty terms)",
+      "question": "Is the target system yours or are you authorized to test it?",
+      "under": {
+        "dim": "pur",
+        "in": [
+          "cyber"
+        ]
+      }
+    },
+    {
+      "key": "cons",
+      "name": "consent of affected people (privacy)",
+      "values": {
+        "na": "no affected people",
+        "y": "they agreed",
+        "n": "they did not agree"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "consent or opt-in record of the affected people (terms acceptance, signed form)",
+      "question": "Did the affected people agree to this?",
+      "under": {
+        "dim": "pur",
+        "in": [
+          "data",
+          "track"
+        ]
+      }
+    },
+    {
+      "key": "fic",
+      "name": "framing",
+      "values": {
+        "na": "not relevant",
+        "lab": "clearly labelled parody, satire or fiction",
+        "real": "presented as real"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "label visible in the published work itself",
+      "question": "Is the content clearly labelled as parody, satire or fiction, or presented as real?",
+      "under": {
+        "dim": "pur",
+        "in": [
+          "imp"
+        ]
+      }
+    },
+    {
+      "key": "hr",
+      "name": "high-risk recommendation area",
+      "values": {
+        "none": "none",
+        "legal": "legal",
+        "med": "medical or mental health",
+        "fin": "finance",
+        "credit": "credit",
+        "ins": "insurance",
+        "housing": "housing",
+        "emp": "employment",
+        "edu": "education or credentials",
+        "health": "healthcare access",
+        "benefit": "public benefits",
+        "status": "legal status"
+      },
+      "fixable": false,
+      "frequency": {},
+      "default": "none",
+      "evidence": "the subject matter of the output (legal, medical, credit, ...) as written",
+      "question": "Does the output recommend something in one of these high-risk areas?"
+    },
+    {
+      "key": "scope",
+      "name": "recommendation scope",
+      "values": {
+        "na": "no recommendation",
+        "ind": "about a specific individual, delivered or used for a decision",
+        "nc": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules"
+      },
+      "fixable": false,
+      "frequency": {},
+      "default": "na",
+      "evidence": "whether the output names a specific person and is delivered to them or used for their decision",
+      "question": "Is the recommendation about a specific person and delivered to them or used to decide about them?",
+      "under": {
+        "dim": "hr",
+        "not_in": [
+          "none"
+        ]
+      }
+    },
+    {
+      "key": "fav",
+      "name": "decision direction",
+      "values": {
+        "na": "no decision",
+        "full": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+        "part": "anything else, incl. partial or conditional"
+      },
+      "fixable": false,
+      "frequency": {},
+      "default": "na",
+      "evidence": "the decision's content: full approval of a listed decision vs anything else",
+      "question": "Which direction is the decision?",
+      "under": {
+        "dim": "scope",
+        "in": [
+          "ind"
+        ]
+      }
+    },
+    {
+      "key": "rev",
+      "name": "qualified human review before delivery or use",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "review log: who reviewed, their qualification, and that they could change the output before delivery",
+      "question": "Does a qualified person review it, and can they change it, before it is delivered or used?",
+      "under": {
+        "dim": "scope",
+        "in": [
+          "ind"
+        ]
+      }
+    },
+    {
+      "key": "disc",
+      "name": "AI disclosure to the affected person or chat user",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "the notice text shown to the person (template, UI screenshot)",
+      "question": "Are the affected people or chat users told they are dealing with AI?"
+    },
+    {
+      "key": "chat",
+      "name": "consumer-facing chatbot or agent",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "fixable": false,
+      "frequency": {},
+      "default": "n",
+      "evidence": "whether the product talks directly with consumers",
+      "question": "Is this a chatbot or agent that consumers talk to directly?"
+    },
+    {
+      "key": "phys",
+      "name": "physical action",
+      "values": {
+        "none": "none",
+        "hi": "high-risk physical action",
+        "nc": "not covered: consumer device in built-in limits, reviewed plan, monitoring only, non-hazardous enclosed lab"
+      },
+      "fixable": false,
+      "frequency": {},
+      "default": "none",
+      "evidence": "whether model output drives equipment, and which category",
+      "question": "Does the action move or control anything physical?"
+    },
+    {
+      "key": "stop",
+      "name": "human can observe and stop",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "operator stop control exists and is tested",
+      "question": "Can a person watch it and stop it at any time?",
+      "under": {
+        "dim": "phys",
+        "in": [
+          "hi"
+        ]
+      }
+    },
+    {
+      "key": "safe",
+      "name": "safe state on intervention or connection loss",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "tested behaviour on operator intervention and connection loss",
+      "question": "Does it go to a safe state when someone intervenes or the connection drops?",
+      "under": {
+        "dim": "phys",
+        "in": [
+          "hi"
+        ]
+      }
+    },
+    {
+      "key": "lim",
+      "name": "operating limits enforced outside the model",
+      "values": {
+        "y": "yes",
+        "n": "no"
+      },
+      "fixable": true,
+      "frequency": {},
+      "evidence": "speed/force/dose limits configured in a controller independent of the model",
+      "question": "Are its operating limits enforced outside the model (hardware or software interlocks)?",
+      "under": {
+        "dim": "phys",
+        "in": [
+          "hi"
+        ]
+      }
+    }
+  ],
+  "ask_order": [
+    "pur",
+    "act",
+    "hr",
+    "scope",
+    "fav",
+    "rev",
+    "disc",
+    "chat",
+    "phys",
+    "stop",
+    "safe",
+    "lim",
+    "auth",
+    "cons",
+    "fic"
+  ],
+  "saved_codes": {
+    "claim-pay": "act=biz pur=std hr=ins scope=ind fav=full disc=y",
+    "hr-advice": "act=biz pur=std hr=legal scope=ind fav=part",
+    "support-bot": "act=biz pur=std chat=y",
+    "robot-shared": "act=biz pur=std phys=hi"
+  },
+  "constants": {},
+  "scope": {
+    "areas": [],
+    "unmatched_history_share": null
+  },
+  "transitions": {},
+  "tool_map": {
+    "base": "",
+    "mappings": []
+  },
+  "lexicon": [
+    {
+      "phrase": "insurance",
+      "token": "hr=ins"
+    },
+    {
+      "phrase": "insurance claim",
+      "token": "hr=ins"
+    },
+    {
+      "phrase": "loan",
+      "token": "hr=credit"
+    },
+    {
+      "phrase": "credit",
+      "token": "hr=credit"
+    },
+    {
+      "phrase": "hiring",
+      "token": "hr=emp"
+    },
+    {
+      "phrase": "job applicant",
+      "token": "hr=emp"
+    },
+    {
+      "phrase": "resume screening",
+      "token": "hr=emp"
+    },
+    {
+      "phrase": "tenant",
+      "token": "hr=housing"
+    },
+    {
+      "phrase": "diagnosis",
+      "token": "hr=med"
+    },
+    {
+      "phrase": "legal advice",
+      "token": "hr=legal"
+    },
+    {
+      "phrase": "chatbot",
+      "token": "chat=y"
+    },
+    {
+      "phrase": "customer support",
+      "token": "chat=y"
+    },
+    {
+      "phrase": "robot",
+      "token": "phys=hi"
+    },
+    {
+      "phrase": "forklift",
+      "token": "phys=hi"
+    },
+    {
+      "phrase": "penetration test",
+      "token": "pur=cyber"
+    },
+    {
+      "phrase": "malware",
+      "token": "pur=cyber"
+    },
+    {
+      "phrase": "exploit",
+      "token": "pur=cyber"
+    },
+    {
+      "phrase": "phishing",
+      "token": "pur=fraud"
+    },
+    {
+      "phrase": "scam",
+      "token": "pur=fraud"
+    },
+    {
+      "phrase": "fake reviews",
+      "token": "pur=fake"
+    },
+    {
+      "phrase": "track employees",
+      "token": "pur=track"
+    },
+    {
+      "phrase": "location tracking",
+      "token": "pur=track"
+    },
+    {
+      "phrase": "emotion recognition",
+      "token": "pur=emo"
+    },
+    {
+      "phrase": "deepfake",
+      "token": "pur=imp"
+    },
+    {
+      "phrase": "parody",
+      "token": "fic=lab"
+    },
+    {
+      "phrase": "approve the claim",
+      "token": "fav=full"
+    },
+    {
+      "phrase": "deny",
+      "token": "fav=part"
+    },
+    {
+      "phrase": "human review",
+      "token": "rev=y"
+    },
+    {
+      "phrase": "without review",
+      "token": "rev=n"
+    },
+    {
+      "phrase": "api",
+      "token": "act=biz"
+    }
+  ],
+  "categories": [
+    {
+      "id": "chat",
+      "name": "Chatbot or assistant",
+      "description": "A model talks with people, for example a support bot or a companion app.",
+      "preset": "chat=y",
+      "features": [
+        "act",
+        "chat",
+        "disc",
+        "pur",
+        "hr"
+      ],
+      "children": [
+        {
+          "id": "everyday",
+          "name": "Everyday help",
+          "description": "No high-risk advice and no listed function.",
+          "preset": "pur=std"
+        },
+        {
+          "id": "advice",
+          "name": "Advice in a high-risk area",
+          "description": "Legal, medical, financial and similar advice.",
+          "preset": "pur=std",
+          "children": [
+            {
+              "id": "legal",
+              "name": "Legal",
+              "preset": "hr=legal"
+            },
+            {
+              "id": "med",
+              "name": "Medical or mental health",
+              "preset": "hr=med"
+            },
+            {
+              "id": "fin",
+              "name": "Finance",
+              "preset": "hr=fin"
+            },
+            {
+              "id": "credit",
+              "name": "Credit",
+              "preset": "hr=credit"
+            },
+            {
+              "id": "ins",
+              "name": "Insurance",
+              "preset": "hr=ins"
+            },
+            {
+              "id": "housing",
+              "name": "Housing",
+              "preset": "hr=housing"
+            },
+            {
+              "id": "emp",
+              "name": "Employment",
+              "preset": "hr=emp"
+            },
+            {
+              "id": "edu",
+              "name": "Education or credentials",
+              "preset": "hr=edu"
+            },
+            {
+              "id": "health",
+              "name": "Healthcare access",
+              "preset": "hr=health"
+            },
+            {
+              "id": "benefit",
+              "name": "Public benefits",
+              "preset": "hr=benefit"
+            },
+            {
+              "id": "status",
+              "name": "Legal status",
+              "preset": "hr=status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "advice",
+      "name": "Recommendation in a high-risk area",
+      "description": "Legal, medical, financial, insurance, housing, work and similar areas.",
+      "features": [
+        "act",
+        "hr",
+        "scope",
+        "disc",
+        "pur"
+      ],
+      "children": [
+        {
+          "id": "legal",
+          "name": "Legal",
+          "preset": "hr=legal",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "med",
+          "name": "Medical or mental health",
+          "preset": "hr=med",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "fin",
+          "name": "Finance",
+          "preset": "hr=fin",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "credit",
+          "name": "Credit",
+          "preset": "hr=credit",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "ins",
+          "name": "Insurance",
+          "preset": "hr=ins",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "housing",
+          "name": "Housing",
+          "preset": "hr=housing",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "emp",
+          "name": "Employment",
+          "preset": "hr=emp",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "edu",
+          "name": "Education or credentials",
+          "preset": "hr=edu",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "health",
+          "name": "Healthcare access",
+          "preset": "hr=health",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "benefit",
+          "name": "Public benefits",
+          "preset": "hr=benefit",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        },
+        {
+          "id": "status",
+          "name": "Legal status",
+          "preset": "hr=status",
+          "children": [
+            {
+              "id": "person",
+              "name": "About a specific person",
+              "description": "about a specific individual, delivered or used for a decision",
+              "preset": "scope=ind",
+              "children": [
+                {
+                  "id": "favorable",
+                  "name": "Wholly favorable decision",
+                  "description": "wholly favorable listed decision (pay claim, approve care, grant eligibility or benefit)",
+                  "preset": "fav=full"
+                },
+                {
+                  "id": "other",
+                  "name": "Other or adverse decision",
+                  "description": "anything else, incl. partial or conditional",
+                  "preset": "fav=part"
+                }
+              ]
+            },
+            {
+              "id": "not-covered",
+              "name": "Not covered",
+              "description": "not covered: education, wellness, internal drafting, explaining given advice, fixed rules",
+              "preset": "scope=nc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security or systems work",
+      "description": "Testing, scanning or changing computer systems and networks.",
+      "preset": "pur=cyber",
+      "features": [
+        "act",
+        "pur"
+      ],
+      "children": [
+        {
+          "id": "own",
+          "name": "Own or authorized systems",
+          "preset": "auth=own"
+        },
+        {
+          "id": "unauth",
+          "name": "Systems without permission",
+          "preset": "auth=unauth"
+        },
+        {
+          "id": "none",
+          "name": "No target system",
+          "description": "For example writing about security in general.",
+          "preset": "auth=na"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "Content creation",
+      "description": "Writing, images or media, including fiction and persuasion.",
+      "features": [
+        "act",
+        "pur",
+        "disc"
+      ],
+      "children": [
+        {
+          "id": "imp",
+          "name": "Impersonate a real person or organization",
+          "preset": "pur=imp",
+          "children": [
+            {
+              "id": "labelled",
+              "name": "Clearly labelled parody, satire or fiction",
+              "preset": "fic=lab"
+            },
+            {
+              "id": "real",
+              "name": "Presented as real",
+              "preset": "fic=real"
+            }
+          ]
+        },
+        {
+          "id": "false",
+          "name": "Spread false information",
+          "preset": "pur=false"
+        },
+        {
+          "id": "fake",
+          "name": "Fake personas, accounts, outlets or inauthentic campaign",
+          "preset": "pur=fake"
+        },
+        {
+          "id": "elect",
+          "name": "Interfere with elections or voting",
+          "preset": "pur=elect"
+        },
+        {
+          "id": "viol",
+          "name": "Violence, extremism or hate",
+          "preset": "pur=viol"
+        },
+        {
+          "id": "sex",
+          "name": "Sexually explicit content",
+          "preset": "pur=sex"
+        },
+        {
+          "id": "std",
+          "name": "Ordinary content",
+          "preset": "pur=std"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "name": "Personal data or tracking",
+      "description": "Collecting, matching or watching information about people.",
+      "features": [
+        "act",
+        "pur"
+      ],
+      "children": [
+        {
+          "id": "data",
+          "name": "Collect, aggregate or process private data",
+          "preset": "pur=data",
+          "children": [
+            {
+              "id": "consent",
+              "name": "People agreed",
+              "preset": "cons=y"
+            },
+            {
+              "id": "no-consent",
+              "name": "People did not agree",
+              "preset": "cons=n"
+            }
+          ]
+        },
+        {
+          "id": "track",
+          "name": "Track or profile people",
+          "preset": "pur=track",
+          "children": [
+            {
+              "id": "consent",
+              "name": "People agreed",
+              "preset": "cons=y"
+            },
+            {
+              "id": "no-consent",
+              "name": "People did not agree",
+              "preset": "cons=n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "physical",
+      "name": "Robot or physical device",
+      "description": "A model controls something that moves or acts in the world.",
+      "features": [
+        "act",
+        "phys",
+        "pur"
+      ],
+      "children": [
+        {
+          "id": "high-risk",
+          "name": "High-risk physical action",
+          "preset": "phys=hi"
+        },
+        {
+          "id": "not-covered",
+          "name": "Not covered",
+          "description": "not covered: consumer device in built-in limits, reviewed plan, monitoring only, non-hazardous enclosed lab",
+          "preset": "phys=nc"
+        }
+      ]
+    },
+    {
+      "id": "listed",
+      "name": "Other listed functions",
+      "description": "Weapons, infrastructure, minors, fraud, platform abuse and similar.",
+      "features": [
+        "act",
+        "pur"
+      ],
+      "children": [
+        {
+          "id": "infra",
+          "name": "Disrupt critical infrastructure",
+          "preset": "pur=infra"
+        },
+        {
+          "id": "weap",
+          "name": "Weapons, including CBRN",
+          "preset": "pur=weap"
+        },
+        {
+          "id": "child",
+          "name": "Harm to minors",
+          "preset": "pur=child"
+        },
+        {
+          "id": "harm",
+          "name": "Self-harm promotion, harassment, non-consensual intimate imagery",
+          "preset": "pur=harm"
+        },
+        {
+          "id": "lawenf",
+          "name": "Make law-enforcement or criminal-justice decisions",
+          "preset": "pur=lawenf"
+        },
+        {
+          "id": "emo",
+          "name": "Emotion recognition (not medical or safety)",
+          "preset": "pur=emo"
+        },
+        {
+          "id": "fraud",
+          "name": "Scams, phishing, extortion, spam, fake documents, plagiarism",
+          "preset": "pur=fraud"
+        },
+        {
+          "id": "abuse",
+          "name": "Platform abuse: reselling, multi-account, distillation, ban evasion, jailbreak",
+          "preset": "pur=abuse"
+        },
+        {
+          "id": "illegal",
+          "name": "Other illegal activity",
+          "preset": "pur=illegal"
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "name": "Something else",
+      "description": "Start from every feature.",
+      "features": [
+        "pur",
+        "act",
+        "hr",
+        "scope",
+        "fav",
+        "rev",
+        "disc",
+        "chat",
+        "phys",
+        "stop",
+        "safe",
+        "lim",
+        "auth",
+        "cons",
+        "fic"
+      ],
+      "catch_all": true
+    }
+  ]
+}

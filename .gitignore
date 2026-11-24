@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+
+# Node
+node_modules/
+
+# Local files and secrets
+.env
+.env.*
+*.key
+*.pem
+.DS_Store
+Thumbs.db
+
+# Bundle build work folders
+policy_space/work/
